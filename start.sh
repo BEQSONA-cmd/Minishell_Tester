@@ -64,8 +64,8 @@ function find_main_files
 }
 
 func0="\tstruct sigaction sa;"
-func1="\tsa.sa_flags = SA_SIGINFO;"
-func2="\tsa.sa_sigaction = get_signal;"
+func1="\tsa.sa_handler = get_signal;"
+func2="\tsa.sa_flags = 0;"
 func3="\tsigemptyset(&sa.sa_mask);"
 func4="\tsigaction(SIGUSR1, &sa, NULL);"
 func5="\tsigaction(SIGUSR2, &sa, NULL);"
@@ -76,7 +76,7 @@ put_functions() {
         return
     fi
 
-    if grep -q "sa.sa_flags = SA_SIGINFO;" "$main_file"; then
+    if grep -q "sa.sa_handler = get_signal;" "$main_file"; then
         echo -e "${RED}Functions are already in the file${RESET}"
         return
     fi
