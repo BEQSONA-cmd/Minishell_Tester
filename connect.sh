@@ -11,23 +11,26 @@ exit_cmd="exit"
 test_cmd="test"
 HISTFILESIZE=1000
 HISTFILE=~/.minishell_history
-pidfile="$HOME/Desktop/split/pid.txt"
-clientfile="$HOME/Desktop/split/client"
+pidfile="$HOME/Minishell_Tester/pid.txt"
+clientfile="$HOME/Minishell_Tester/client"
 test=("ls" "ls -la" "ls -l" "pwd" "export" "env" "echo hello")
 
-execute_command_in_bash() {
+execute_command_in_bash() 
+{
     local command="$1"
     eval "$command"
 }
 
-execute_command_in_minishell() {
+execute_command_in_minishell() 
+{
     local pid="$1"
     local command="$2"
     local send="$clientfile $pid \"$command\""
     eval "$send"
 }
 
-test_commands() {
+test_commands() 
+{
     for i in "${test[@]}"; do
         execute_command_in_minishell "$pid" "$i"
         execute_command_in_bash "$i"
