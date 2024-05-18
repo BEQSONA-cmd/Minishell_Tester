@@ -69,3 +69,6 @@ while true; do
         echo "pid.txt file not found"
     fi
 done
+
+# open pid.txt file and write 0
+echo 0 > "$pidfile"
