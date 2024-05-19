@@ -77,6 +77,7 @@ put_functions() {
     fi
 
     if grep -q "sa.sa_handler = get_signal;" "$main_file"; then
+        make
         echo -e "${RED}Functions are already in the file${RESET}"
         return
     fi
@@ -110,7 +111,7 @@ put_functions() {
             fi
         fi
     done
-
+    make re
     exec 3>&-
 }
 
@@ -118,7 +119,6 @@ c_files=($(all_c_files))
 main_file=$(find_main_files "${c_files[@]}")
 put_functions "$main_file"
 
-make re
 bash connect.sh
 rm connect.sh
 pkill -f get_pid.py
