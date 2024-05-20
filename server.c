@@ -2,16 +2,13 @@ char		**g_envp;
 
 void	execute_string(char *input)
 {
-	t_mshell	*mshell;
+	t_mshell	mshell;
 	char		*path;
 
-	mshell = (t_mshell *)malloc(sizeof(t_mshell));
-	init_mshell(mshell, g_envp);
-	mshell->input = ft_strdup(input);
-	printf("%s\n", mshell->input);
-	parse_input(mshell->input, mshell);
-	ft_execute(mshell, g_envp);
-	ft_free(mshell->input);
+	init_mshell(&mshell, g_envp);
+	printf("%s\n", input);
+	parse_input(input, &mshell);
+	ft_execute(&mshell, g_envp);
 	path = get_currect_path(g_envp);
 	write(1, path, ft_strlen(path));
 	ft_free(path);
