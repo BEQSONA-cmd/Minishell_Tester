@@ -61,6 +61,7 @@ while true; do
             execute_command_in_bash "$command"
         else
             execute_command_in_minishell "$pid" "$command"
+            sleep 0.0001
             execute_command_in_bash "$command"
         fi
     history -s "$command"

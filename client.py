@@ -14,7 +14,6 @@ def send_signal(pid, message):
         file.write(message)
 
     os.kill(pid, signal.SIGUSR1)
-    print(message)
 
 if __name__ == "__main__":
     if(len(sys.argv) != 3):
