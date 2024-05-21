@@ -6,24 +6,24 @@ cd && git clone https://github.com/BEQSONA-cmd/Minishell_Tester.git && cd Minish
 ```
 ### Make sure you run next commands in different terminal
 
-#### ............................................................................................(1)
+#### ................................................................................................................(1)
 
 ## Run 'reallyshell' in terminal 
-[ it can be anywhere ]
+[ you can run anywhere ]
 ```bash
 reallyshell
 ```
 ### Reallyshell is first place for connection, and it is a program wich will execute every command in bash and displays output
 
-#### ............................................................................................(2)
+#### ................................................................................................................(2)
 
 ## Run 'm_test' in terminal 
-[ direcroty where you have Makefile for minishell ]
+[ run in direcroty where you have Makefile for minishell ]
 ```bash
 m_test
 ```
 ### m_test is second place for connection, and it is a program wich will execute every command in Minishell
 
-#### ............................................................................................(end)
+#### ................................................................................................................(end)
 
 ## Thats all you have two terminal, from now any command you run in Reallyshell will be executed in your Minishell as well
