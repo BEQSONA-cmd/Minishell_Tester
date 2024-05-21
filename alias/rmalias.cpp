@@ -62,6 +62,7 @@ int	main(void)
 	std::vector<std::string> linesToRemove;
 	linesToRemove.push_back("");
 	linesToRemove.push_back("alias m_test=~/Minishell_Tester/start.sh");
+	linesToRemove.push_back("alias reallyshell=~/Minishell_Tester/connect.sh");
 	removeSpecificLines(path, linesToRemove);
 	return (0);
 }

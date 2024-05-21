@@ -55,6 +55,7 @@ int	main(void)
 			exit(0);
 		ft_putstr_fd("\n", file);
 		ft_putstr_fd("alias m_test=~/Minishell_Tester/start.sh\n", file);
+		ft_putstr_fd("alias reallyshell=~/Minishell_Tester/connect.sh\n", file);
 	}
 	file.close();
 	return (0);

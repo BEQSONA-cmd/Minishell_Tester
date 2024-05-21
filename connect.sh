@@ -12,7 +12,7 @@ test_cmd="test"
 HISTFILESIZE=1000
 HISTFILE=~/.minishell_history
 pidfile="$HOME/Minishell_Tester/pid.txt"
-clientfile="$HOME/Minishell_Tester/client"
+clientfile="$HOME/Minishell_Tester/client.py"
 test=("ls" "ls -la" "ls -l" "pwd" "export" "env" "echo hello" "echo here")
 
 execute_command_in_bash() 
@@ -25,7 +25,7 @@ execute_command_in_minishell()
 {
     local pid="$1"
     local command="$2"
-    local send="$clientfile $pid \"$command\""
+    local send="python3 $clientfile $pid \"$command\""
     eval "$send"
 }
 
@@ -58,7 +58,7 @@ while true; do
     if [[ -f "$pidfile" ]]; then
         pid=$(<"$pidfile")
         if [ "$pid" -eq 0 ]; then
-            echo "minishell is not running"
+            execute_command_in_bash "$command"
         else
             execute_command_in_minishell "$pid" "$command"
             execute_command_in_bash "$command"
@@ -69,6 +69,3 @@ while true; do
         echo "pid.txt file not found"
     fi
 done
-
-# open pid.txt file and write 0
-echo 0 > "$pidfile"

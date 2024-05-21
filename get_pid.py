@@ -6,7 +6,7 @@ home = home.stdout.decode("utf-8").strip()
 file = home + "/Minishell_Tester/pid.txt"
 
 def background_task():
-    cmd = "ps aux | grep minishell | grep -iv grep"
+    cmd = "ps aux | grep Minishell_test | grep -iv grep"
     while True:
         pid = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
         pid = pid.stdout.decode("utf-8")
