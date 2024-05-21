@@ -80,7 +80,7 @@ def handle_signal(signum, frame):
         output_lines = remove_first_and_last_line(output)
         if g_nline == 1:
             print("\n\n")
-            g_nline = 0
+
         if not output_lines:
             pass
         else:
