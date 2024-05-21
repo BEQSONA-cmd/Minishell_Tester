@@ -4,7 +4,6 @@ import signal
 
 
 def send_signal(pid, message):
-    # check if pid is valid
     try:
         os.kill(pid, 0)
     except OSError:

@@ -17,12 +17,17 @@ fi
 
 if [ -e "$file" ]; then
   cp ~/Minishell_Tester/Minishell_test.py .
+  make
+  python3 Minishell_test.py
+  rm Minishell_test.py
 else
   echo "Makefile not found"
+  echo -e "${RED}please run this script in the root of your project${RESET}"
+  pkill -f get_pid.py
+  echo 0 > $HOME/Minishell_Tester/pid.txt
+  exit 1
 fi
 
-python3 Minishell_test.py
-rm Minishell_test.py
 pkill -f get_pid.py
 
 echo 0 > $HOME/Minishell_Tester/pid.txt
