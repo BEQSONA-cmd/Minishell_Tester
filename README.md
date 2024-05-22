@@ -1,29 +1,27 @@
+# Minishell Tester
+Minishell Tester is a convenient tool designed to simplify testing your minishell. It establishes a connection between two terminals, allowing you to simultaneously execute commands in both your minishell and the standard bash shell.
+
 ## Installation
 
 for install the Minishell tester please run this command:
 ```bash
 cd && git clone https://github.com/BEQSONA-cmd/Minishell_Tester.git && cd Minishell_Tester && ./install.sh
 ```
-### Make sure you run next commands in different terminal
-
-#### ................................................................................................................(1)
-
-## Run 'reallyshell' in terminal 
-[ you can run anywhere ]
+## How it works: 
+#### Run 'reallyshell' in one terminal to start a session that executes commands in bash and prints the output.
 ```bash
 reallyshell
 ```
-### Reallyshell is first place for connection, and it is a program wich will execute every command in bash and displays output
 
-#### ................................................................................................................(2)
-
-## Run 'm_test' in terminal 
-[ run in direcroty where you have Makefile for minishell ]
+#### Run 'm_test' in a second terminal to launch your minishell. [ run in directory where the Makefile is allocated ]
 ```bash
 m_test
 ```
-### m_test is second place for connection, and it is a program wich will execute every command in Minishell
 
-#### ................................................................................................................(end)
+### The two terminals are now connected. Commands typed in the terminal running 'Reallyshell' will be executed in both the bash shell and your minishell, making it easy to compare their outputs.
+![Reallyshell](https://github.com/BEQSONA-cmd/Minishell_Tester/blob/main/gifs/Reallyshell.gif)
 
-## Thats all you have two terminal, from now any command you run in Reallyshell will be executed in your Minishell as well
+## ...................................................................................................................................................
+### For running some tests type 'test' in Reallyshell
+![Tests](https://github.com/BEQSONA-cmd/Minishell_Tester/blob/main/gifs/Tests.gif)
+## ...................................................................................................................................................
