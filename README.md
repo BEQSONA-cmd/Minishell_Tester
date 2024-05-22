@@ -22,6 +22,6 @@ m_test
 ![Reallyshell](https://github.com/BEQSONA-cmd/Minishell_Tester/blob/main/gifs/Reallyshell.gif)
 
 ## ............................................................................................................................
-### For running some tests type 'test' in Reallyshell
+### For running some tests type 'test' in Reallyshell:
 ![Tests](https://github.com/BEQSONA-cmd/Minishell_Tester/blob/main/gifs/Tests.gif)
 ## ............................................................................................................................
