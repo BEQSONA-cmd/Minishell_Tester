@@ -18,7 +18,7 @@ reallyshell
 m_test
 ```
 
-### The two terminals are now connected. Commands typed in the terminal running 'Reallyshell' will be executed in both the bash shell and your minishell, making it easy to compare their outputs.
+### The two terminals are now connected. Commands typed in 'Reallyshell' will be executed in both the bash and your minishell, making it easy to compare their outputs.
 ![Reallyshell](https://github.com/BEQSONA-cmd/Minishell_Tester/blob/main/gifs/Reallyshell.gif)
 
 ## ............................................................................................................................
