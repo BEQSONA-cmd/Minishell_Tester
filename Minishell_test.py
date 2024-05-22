@@ -14,15 +14,9 @@ def execute_command(proc, command):
     proc.stdin.write(command + '\n')
     proc.stdin.flush()
     output = ''
-    while not output.endswith('$ '):
+    while not output.endswith(end_prompt):
         output += proc.stdout.read(1)
     return output
-
-def sort_ls(output):
-    output_lines = output.strip().split('\n')
-    output_lines = output_lines[1:-1]
-    output_lines = '  '.join(output_lines)
-    return output_lines
 
 def remove_first_and_last_line(output):
     find = "minishell: (null): command not found"
@@ -30,11 +24,6 @@ def remove_first_and_last_line(output):
     if find in output:
         return find
     
-    if "ls\n" in output or "ls -a\n" in output:
-        output = sort_ls(output)
-        g_nline = 1
-        return output
-
     output_lines = output.strip().split('\n')
     if len(output_lines) > 1:
         output_without_first_and_last = '\n'.join(output_lines[1:-1])
@@ -42,8 +31,30 @@ def remove_first_and_last_line(output):
         output_without_first_and_last = ''
     return output_without_first_and_last.strip()
 
+def get_prompt_end(proc):
+    prompts = ''
+    global end_prompt
+    end_prompt = ''
+    for i in range(100):
+        prompts += proc.stdout.read(1)
+        if prompts.endswith('> '):
+            end_prompt = '> '
+            break
+        if prompts.endswith('$ '):
+            end_prompt = '$ '
+            break
+        if prompts.endswith('# '):
+            end_prompt = '# '
+            break
+        if prompts.endswith('% '):
+            end_prompt = '% '
+            break
+    return prompts
+    
 def run_minishell(minishell):
     global proc
+    global end_prompt
+
     proc = subprocess.Popen(
         minishell,
         stdin=subprocess.PIPE,
@@ -53,9 +64,7 @@ def run_minishell(minishell):
         bufsize=1,
         universal_newlines=True
     )
-    output = ''
-    while not output.endswith('$ '):
-        output += proc.stdout.read(1)
+    output = get_prompt_end(proc)
 
     while True:
         command = input(find_prompt(output))
