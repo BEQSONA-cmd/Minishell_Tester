@@ -13,7 +13,7 @@ HISTFILESIZE=1000
 HISTFILE=~/.minishell_history
 pidfile="$HOME/Minishell_Tester/pid.txt"
 clientfile="$HOME/Minishell_Tester/client.py"
-test=("ls" "ls -la" "ls -l" "pwd" "export" "env" "echo hello" "echo here")
+test=("ls -la" "ls -l" "echo Hello" "export new" "env" "export" "pwd")
 
 execute_command_in_bash() 
 {
