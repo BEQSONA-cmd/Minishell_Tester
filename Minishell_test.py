@@ -5,7 +5,7 @@ import os
 
 minishell = "./minishell"
 
-minishellfile = os.path.expanduser("~/Minishell_Tester/minishell_output.txt")
+minishellfile = os.path.expanduser("~/Minishell_Tester/minishell_output.csh")
 
 g_nline = 0
 
