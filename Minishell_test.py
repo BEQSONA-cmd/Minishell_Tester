@@ -1,8 +1,11 @@
 import subprocess
 import readline
 import signal
+import os
 
 minishell = "./minishell"
+
+minishellfile = os.path.expanduser("~/Minishell_Tester/minishell_output.txt")
 
 g_nline = 0
 
@@ -73,8 +76,12 @@ def run_minishell(minishell):
         output = execute_command(proc, command)
         output_lines = remove_first_and_last_line(output)
         if not output_lines:
+            with open(minishellfile, "w") as file:
+                file.write("\n")
             continue
         else:
+            with open(minishellfile, "w") as file:
+                file.write(output_lines)
             print(output_lines)
 
     proc.stdin.write('exit\n')
@@ -91,8 +98,12 @@ def handle_signal(signum, frame):
             print("\n\n")
 
         if not output_lines:
+            with open(minishellfile, "w") as file:
+                file.write("\n")
             pass
         else:
+            with open(minishellfile, "w") as file:
+                file.write(output_lines)
             print(output_lines)
         print(find_prompt(output))
         readline.add_history(data)

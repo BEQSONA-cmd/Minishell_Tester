@@ -13,12 +13,16 @@ HISTFILESIZE=1000
 HISTFILE=~/.minishell_history
 pidfile="$HOME/Minishell_Tester/pid.txt"
 clientfile="$HOME/Minishell_Tester/client.py"
+bashfile="$HOME/Minishell_Tester/bash_output.txt"
+minishellfile="$HOME/Minishell_Tester/minishell_output.txt"
 test=("ls -la" "ls -l" "echo Hello" "export new" "env" "export" "pwd")
 
 execute_command_in_bash() 
 {
     local command="$1"
     eval "$command"
+    output=$(eval "$command")
+    echo "$output" > "$bashfile"
 }
 
 execute_command_in_minishell() 
@@ -29,20 +33,29 @@ execute_command_in_minishell()
     eval "$send"
 }
 
+compare_output() 
+{
+    bash_output=$(cat "$bashfile")
+    minishell_output=$(cat "$minishellfile")
+    if [ "$bash_output" == "$minishell_output" ]; then
+        echo -e "${GREEN}[Test passed] ✅${NC}"
+    else
+        echo -e "${RED}[Test failed] ❌${NC}"
+        # uncomment the line below to see the difference between the two outputs
+        # diff -y --suppress-common-lines "$bashfile" "$minishellfile"
+    fi
+}
+
 test_commands() 
 {
     for i in "${test[@]}"; do
         execute_command_in_minishell "$pid" "$i"
         execute_command_in_bash "$i"
-        if(( $? != 0 )); then
-            echo -e "${RED}[Test failed] ❌${NC}"
-            break
-        else
-            echo -e "${GREEN}[Test passed] ✅${NC}"
-        fi
-        sleep 1
+        compare_output
+        sleep 0.5
     done
 }
+
 
 while true; do
     Bash="Reallyshell~"
@@ -63,6 +76,7 @@ while true; do
             execute_command_in_minishell "$pid" "$command"
             sleep 0.0001
             execute_command_in_bash "$command"
+            # compare_output
         fi
     history -s "$command"
     history -w
