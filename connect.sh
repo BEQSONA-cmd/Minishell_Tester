@@ -13,9 +13,20 @@ HISTFILESIZE=1000
 HISTFILE=~/.minishell_history
 pidfile="$HOME/Minishell_Tester/pid.txt"
 clientfile="$HOME/Minishell_Tester/client.py"
+test_echo="$HOME/Minishell_Tester/tests/echo.csh"
+test_export="$HOME/Minishell_Tester/tests/export.csh"
 bashfile="$HOME/Minishell_Tester/compare/bash_output.csh"
 minishellfile="$HOME/Minishell_Tester/compare/minishell_output.csh"
-test=("ls -la" "ls -l" "echo Hello" "export new" "env" "export" "pwd")
+
+test=()
+while IFS= read -r line; do
+    test+=("$line")
+done < "$test_echo"
+
+test2=()
+while IFS= read -r line; do
+    test2+=("$line")
+done < "$test_export"
 
 execute_command_in_bash() 
 {
@@ -48,7 +59,20 @@ compare_output()
 
 test_commands() 
 {
+    echo -e "${YELLOW}Running 'echo' tests...${NC}"
     for i in "${test[@]}"; do
+        if [[ "$i" == *"echo"*"\""* ]]; then
+            execute_command_in_minishell "$pid" "$i"
+            execute_command_in_bash 'echo "Hello" World'
+        else
+            execute_command_in_minishell "$pid" "$i"
+            execute_command_in_bash "$i"
+        compare_output
+        sleep 0.5
+        fi
+    done
+    echo -e "${YELLOW}Running 'export' tests...${NC}"
+    for i in "${test2[@]}"; do
         execute_command_in_minishell "$pid" "$i"
         execute_command_in_bash "$i"
         compare_output

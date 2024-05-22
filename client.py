@@ -2,7 +2,6 @@ import os
 import sys
 import signal
 
-
 def send_signal(pid, message):
     try:
         os.kill(pid, 0)
@@ -16,11 +15,10 @@ def send_signal(pid, message):
     os.kill(pid, signal.SIGUSR1)
 
 if __name__ == "__main__":
-    if(len(sys.argv) != 3):
+    if len(sys.argv) < 3:
         print("Usage: python3 client.py <PID> <'string to send'>")
         sys.exit(1)
     else:
         pid = int(sys.argv[1])
-        message = sys.argv[2]
+        message = " ".join(sys.argv[2:])
         send_signal(pid, message)
-    

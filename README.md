@@ -12,8 +12,8 @@ cd && git clone https://github.com/BEQSONA-cmd/Minishell_Tester.git && cd Minish
 ```bash
 reallyshell
 ```
-#### [ run in directory where the Makefile is allocated ]
-#### Run 'm_test' in a second terminal to launch your minishell.
+
+#### Run 'm_test' in a second terminal to launch your minishell. [ run in directory where the Makefile is allocated ]
 ```bash
 m_test
 ```
