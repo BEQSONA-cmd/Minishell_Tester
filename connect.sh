@@ -44,14 +44,17 @@ execute_command_in_minishell()
     eval "$send"
 }
 
+
+# get testing command here also and print what command is testing 
 compare_output() 
 {
+    local command="$1"
     bash_output=$(cat "$bashfile")
     minishell_output=$(cat "$minishellfile")
     if [ "$bash_output" == "$minishell_output" ]; then
-        echo -e "${GREEN}[Test passed] ✅${NC}"
+        echo -e "${GREEN}[$i] (Test passed) ✅${NC}"
     else
-        echo -e "${RED}[Test failed] ❌${NC}"
+        echo -e "${RED}[$i] (Test failed) ❌${NC}"
         # uncomment the line below to see the difference between the two outputs
         # diff -y --suppress-common-lines "$bashfile" "$minishellfile"
     fi
