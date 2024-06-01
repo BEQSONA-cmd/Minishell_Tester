@@ -13,6 +13,7 @@ HISTFILESIZE=1000
 HISTFILE=~/.minishell_history
 pidfile="$HOME/Minishell_Tester/pid.txt"
 clientfile="$HOME/Minishell_Tester/client.py"
+test_eval="$HOME/Minishell_Tester/tests/eval.csh"
 test_echo="$HOME/Minishell_Tester/tests/echo.csh"
 test_export="$HOME/Minishell_Tester/tests/export.csh"
 bashfile="$HOME/Minishell_Tester/compare/bash_output.csh"
@@ -33,6 +34,11 @@ test3=()
 while IFS= read -r line; do
     test3+=("$line")
 done < "$test_redirect"
+
+test4=()
+while IFS= read -r line; do
+    test4+=("$line")
+done < "$test_eval"
 
 execute_command_in_bash() 
 {
@@ -59,7 +65,7 @@ compare_output()
     minishell_length=${#minishell_output}
     bash_output_sub=${bash_output:0:minishell_length}
     
-    if [ "$bash_output_sub" == "$minishell_output" ]; then
+    if [ "$bash_output" == "$minishell_output" ]; then
         echo -e "${GREEN}[$i] (Test passed) ✅${NC}"
         ((success++))
     else
@@ -73,6 +79,14 @@ test_commands()
     success=0
     failed=0
     total=0
+    echo -e "${YELLOW}Running 'eval' tests...${NC}"
+    for i in "${test4[@]}"; do
+        total=$((total+1))
+        execute_command_in_minishell "$pid" "$i"
+        execute_command_in_bash "$i"
+        compare_output
+        sleep 0.1
+    done
     echo -e "${YELLOW}Running 'echo' tests...${NC}"
     execute_command_in_bash "mkdir test1 test2"
     sleep 0.5

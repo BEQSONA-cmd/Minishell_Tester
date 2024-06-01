@@ -4,8 +4,8 @@ import signal
 import os
 
 minishell = "./minishell"
-
 minishellfile = os.path.expanduser("~/Minishell_Tester/compare/minishell_output.csh")
+valgrind_command = f"valgrind --leak-check=full {minishell}"
 
 g_nline = 0
 
@@ -87,7 +87,6 @@ def run_minishell(minishell):
     proc.stdin.write('exit\n')
     proc.stdin.flush()
     proc.terminate()
-
 
 def handle_signal(signum, frame):
     with open("/tmp/signal_data.txt", "r") as file:
