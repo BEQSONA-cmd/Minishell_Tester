@@ -63,3 +63,45 @@ ls -la file1 file2 file3 file4
 ls -l >file4
 cat file4
 rm file1 file2 file3 file4
+ls -la | wc -c | cat | ls -la > file1 > file2
+cat file1
+cat file2
+ls -la | < file1 cat > file3
+cat file3
+ls -la | < file1 cat > file4
+cat file4
+ls -la | wc -la > file1 | ls > file2 | ls -l > file3 | ls -a > file4 | ls -la > file5
+cat file1
+cat file2
+cat file3
+cat file4
+cat file5
+rm file1 file2 file3 file4 file5
+ls -la | grep "test" | sort | uniq | tee file1 | wc -l > file2 | cat > file3
+cat file1
+cat file2
+cat file3
+rm file1 file2 file3
+ps aux | grep "root" | awk '{print $1}' | sort | uniq | tee file1 | wc -w > file2 | cat > file3
+cat file1
+cat file2
+cat file3
+rm file1 file2 file3
+ls -la > file1
+ls -a > file2
+< file1 grep "test" | sort | tee file3 | < file2 wc -c > file4 | cat > file5
+cat file1
+cat file2
+cat file3
+cat file4
+cat file5
+rm file1 file2 file3 file4 file5
+ls -la > file1 | date > file2 | whoami > file3 | cat file1 file2 file3 > file4 
+cat file1
+cat file2
+cat file3
+cat file4
+< file1 cat > file5 | < file2 cat > file6 | < file3 cat > file7
+cat file5
+cat file6
+cat file7

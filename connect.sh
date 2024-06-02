@@ -144,7 +144,6 @@ test_commands()
     echo -e "${YELLOW}Tests completed!${NC}"
 }
 
-
 while true; do
     Bash="Reallyshell~"
     path=$(pwd | sed "s|/home/$(whoami)||")
