@@ -25,11 +25,11 @@ paste file1 file2 file3 >file4
 ls -la file4
 rm file1 file2 file3 file4
 echo "Test Case 6" | tee file1 | tee file2 >file3
-wc -l file1 file2 file3 | cat >file4
+ls -a file1 file2 file3 | cat >file4
 cat file4
 ls -la >file3
 ls -la >file1 >file2 >file3
-wc -l file1 file2 file3 | cat >file4
+ls -a file1 file2 file3 | cat >file4
 cat file4
 rm file1 file2 file3 file4
 echo "Complex case" | tee file1 file2 | grep "Complex" >file3
@@ -54,7 +54,7 @@ uptime >file3
 cat file1 file2 >file4
 cat file3 file4 >file5
 ls -la >file5
-wc -l file1 file2 file3 file4 file5 | cat >file6
+ls -a file1 file2 file3 file4 file5 | cat >file6
 cat file6
 rm file1 file2 file3 file4 file5 file6
 echo "Final Case" | tee file1 | tee file2 | tee file3 >file4
@@ -70,7 +70,7 @@ ls -la | < file1 cat > file3
 cat file3
 ls -la | < file1 cat > file4
 cat file4
-ls -la | wc -la > file1 | ls > file2 | ls -l > file3 | ls -a > file4 | ls -la > file5
+ls -la | wc -la > file1 | ls > file2 | ls -a > file3 | ls -a > file4 | ls -a > file5
 cat file1
 cat file2
 cat file3
@@ -82,13 +82,15 @@ cat file1
 cat file2
 cat file3
 rm file1 file2 file3
-ps aux | grep "root" | awk '{print $1}' | sort | uniq | tee file1 | wc -w > file2 | cat > file3
+ls -la | grep "test" | sort | ls -la > file1
+< file1 cat | wc -c > file2 
+ls -la | ehco hello | cat file2 > file3
 cat file1
 cat file2
 cat file3
 rm file1 file2 file3
 ls -la > file1
-ls -a > file2
+ls -l > file2
 < file1 grep "test" | sort | tee file3 | < file2 wc -c > file4 | cat > file5
 cat file1
 cat file2
@@ -96,11 +98,12 @@ cat file3
 cat file4
 cat file5
 rm file1 file2 file3 file4 file5
-ls -la > file1 | date > file2 | whoami > file3 | cat file1 file2 file3 > file4 
+ls -a > file1 | date > file2 | ls -a > file3 | cat file1 file2 file3 > file4 
 cat file1
 cat file2
 cat file3
 cat file4
+ls -a | wc -c | cat | ls -a > file1
 < file1 cat > file5 | < file2 cat > file6 | < file3 cat > file7
 cat file5
 cat file6

@@ -1,11 +1,11 @@
 ls
 echo hello
 echo hello world
+echo $HOME $HOME $USER
 ls -l
 ls -la
 echo $?
 bin/ls filethatdoesntexist
-expr $?
 expr $? $?
 echo $?
 ls
@@ -14,9 +14,7 @@ echo 'USER'
 echo $USER
 env | grep USER_ZD
 env | grep USER=
-env | grep OLDPWD
 export | grep USER
-export | grep OLDPWD
 export new
 export | grep new
 export new=HELLO

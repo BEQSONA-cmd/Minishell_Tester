@@ -47,7 +47,6 @@ unset TMP_VAR1 TMP_VAR2
 export | grep TMP_VAR
 env | grep TMP_VAR
 rm file1 file2 file3
-export SYS_INFO=$(uname -a)
 echo $SYS_INFO | cat > file1 | wc -w >file2
 cat file1
 cat file2
