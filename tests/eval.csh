@@ -27,18 +27,13 @@ export | grep hello
 unset hello
 export | grep hello
 cd ls
+cd ..
 cd something
-cd
-cd Desktop/Minishell/minishell
-cd ..
-cd ..
-cd Minishell/minishell
 pwd
+cd minishell
 cd ..
 pwd
-cd ..
-pwd
-cd Minishell/minishell
+cd minishell
 dsbksdgbksdghsd
 echo $USER
 export USER=NEWUSER
